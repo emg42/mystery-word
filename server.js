@@ -1,11 +1,10 @@
-// const words = fs.readFileSync("/usr/share/dict/words", "utf-8").toLowerCase().split("\n");
-const express = require('express');
-const app = express();
-
-const mustacheExpress = require('mustache-express');
-const dal = require('./dal');
-const bodyParser = require('body-parser');
-const expressValidator = require('express-validator');
+const express = require('express')
+const app = express()
+const dal = require('./dal')
+const mustacheExpress = require('mustache-express')
+const bodyParser = require('body-parser')
+const session = require('express-session')
+const validator = require('express-validator')
 
 // setting up mustache
 app.engine('mustache', mustacheExpress());
