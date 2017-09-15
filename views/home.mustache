@@ -7,13 +7,21 @@
   <body>
     <header>
       <h1>Mystery Word</h1>
-      <p>You have guesses left</p>
-      <div class="guess-box"></div>
+      <div class="guess-box">
+        <p>You have guesses left</p>
+      </div>
     </header>
     <section class="game-container">
-      <div class="word-container"></div>
+      <div class="word-container">
+        <ul>
+          <li></li>
+        </ul>
+      </div>
       <div class="game-result"></div>
-      <button type="submit" name="button">Make a guess</button>
+      <form class="" action="/" method="POST">
+        <input type="submit" maxlength = "1" name="submit" value="" placeholder="Guess a letter">
+      </form>
+
       <p>Letters guessed:</p>
     </section>
   </body>

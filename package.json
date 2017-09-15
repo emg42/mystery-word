@@ -1,4 +1,4 @@
-{
+d{
   "name": "mystery-word",
   "version": "1.0.0",
   "description": "",
@@ -10,8 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "express-session": "^1.15.5",
+    "express-validator": "^4.1.1",
     "mustache": "^2.3.0",
     "mustache-express": "^1.2.5"
   }

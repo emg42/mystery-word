@@ -11,11 +11,37 @@ app.engine('mustache', mustacheExpress());
 app.set('views', './views');
 app.set('view engine', 'mustache');
 
+app.use(express.static('public'))
+
 // setting up bodyparser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 
-app.use('/styles.css', express.static('public'));
+
+// setting up validator
+app.use(validator())
+
+
+app.use(session({
+  secret: 'so secret',
+  resave: false,
+  saveUninitialized: true, 
+  cookie: { maxAge:null }
+}))
+
+
+
+//middleware to check if a user has begin a game session
+app.use(function (req, res, next) {
+  if (req.session.usr) {
+    req.isAuthenticated = true;
+  }
+  else {
+    req.isAuthenticated = false;
+  }
+  console.log(req.isAuthenticated, 'session')
+  next();
+})
 
 
 
@@ -29,5 +55,5 @@ app.set('port', 3000)
 
 
 app.listen(3000, function () {
-  console.log('Successfully started express application!');
+  console.log('App has started at port 3000!');
 })
