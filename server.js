@@ -1,11 +1,11 @@
 const express = require('express')
 const app = express()
-const dal = require('./dal')
+// const dal = require('./dal')
 const mustacheExpress = require('mustache-express')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const validator = require('express-validator')
-
+const {makeDashes, getWord, getGuesses, addGuess} = require('./dal')
 // setting up mustache
 app.engine('mustache', mustacheExpress());
 app.set('views', './views');
@@ -25,7 +25,7 @@ app.use(validator())
 app.use(session({
   secret: 'so secret',
   resave: false,
-  saveUninitialized: true, 
+  saveUninitialized: true,
   cookie: { maxAge:null }
 }))
 
