@@ -5,7 +5,7 @@ const mustacheExpress = require('mustache-express')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const validator = require('express-validator')
-const {makeDashes, getWord, getGuesses, addGuess} = require('./dal')
+const {makeDashes, getWord, getGuesses, addGuess, incorrectArr, mysteryWord} = require('./dal')
 // setting up mustache
 app.engine('mustache', mustacheExpress());
 app.set('views', './views');
@@ -32,21 +32,40 @@ app.use(session({
 
 
 //middleware to check if a user has begin a game session
-app.use(function (req, res, next) {
-  if (req.session.usr) {
-    req.isAuthenticated = true;
-  }
-  else {
-    req.isAuthenticated = false;
-  }
-  console.log(req.isAuthenticated, 'session')
-  next();
+// app.use(function (req, res, next) {
+//   if (req.session.usr) {
+//     req.isAuthenticated = true;
+//   }
+//   else {
+//     req.isAuthenticated = false;
+//   }
+//   console.log(req.isAuthenticated, 'session')
+//   next();
+// })
+
+
+app.get('/', function(req, res){
+  if (getGuesses() === 0){
+  res.render("./lose");
+} else {
+  res.render("./home", {
+    makeDashes: getWord(),
+    incorrectArr: incorrectArr,
+    getGuesses: getGuesses()
+  })
+}
 })
 
-
-
-
-
+app.post('/', function(req, res) {
+  let winningWord = getWord();
+  addGuess(req.body.id)
+  console.log(req.body.id)
+  if(winningWord.join('') === mysteryWord) {
+    res.render('./win');
+  } else {
+    res.redirect('/')
+  }
+})
 
 
 

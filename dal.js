@@ -11,12 +11,14 @@ let incorrectArr= [];
 let guesses = 8;
 let word = makeDashes();
 
+console.log(mysteryWord);
 
 function makeDashes(){
 let displayArr =[];
-for (var chr in mysterWord) {
+for (var chr in mysteryWord) {
   displayArr.push('_')
 }
+return displayArr;
 }
 
 function getWord () {
@@ -36,7 +38,7 @@ function addGuess (guess) {
      word[i] = guess;
      isCorrect = true;
    }
-   if(incorrectArr[i] === guessedLetter) {
+   if(incorrectArr[i] === guess) {
      isCorrect = true;
    }
  }
@@ -49,29 +51,15 @@ function addGuess (guess) {
 
 
 
-modules.exports =
+module.exports =
 
   {
     makeDashes,
     getWord,
     getGuesses,
-    addGuess
+    addGuess,
+    incorrectArr,
+    mysteryWord
 
 
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = {
-
-}

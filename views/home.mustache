@@ -11,17 +11,21 @@
 
     <nav class="navbar">
       <h1>Mystery Word</h1>
-      <div class="guesses-left">You have guesses left</div>
+      <div class="container guesses-left">{{>_guessesLeft}}</div>
     </nav>
     <div class="container dashes">
-
+      {{#makeDashes}}
+        {{.}}
+      {{/makeDashes}}
     </div>
     <form action='/' method="post">
-      <input type="text" maxlength="1" pattern="[A-Za-z]" >
+      <input type="text" maxlength="1" pattern="[A-Za-z]" name="id" >
       <button type="submit">Submit</button>
     </form>
     <div class="container letters-guessed">
-
+        {{#incorrectArr}}
+          {{.}}
+        {{/incorrectArr}}
     </div>
 
 
